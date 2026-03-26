@@ -279,7 +279,6 @@
     margin-bottom: 0.7rem;
   }
   .mob-of-selector input::placeholder { color: rgba(255,255,255,0.4); }
-  .mob-of-selector select option { color: black; }
 
   .mob-body {
     background: var(--gris);
@@ -505,12 +504,14 @@
             <th rowspan="2">Rép.</th>
             <th rowspan="2">Nbr</th>
             <th rowspan="2">Désignation</th>
-            <th colspan="11" style="background:#2a5298;text-align:center">DÉBIT / PRÉPARATION</th>
+            <th colspan="4" style="background:#1e4080;text-align:center">TRAÇAGE</th>
+            <th colspan="10" style="background:#2a5298;text-align:center">DÉBIT / PRÉPARATION</th>
             <th colspan="8" style="background:#1e5799;text-align:center">MISE EN FORME</th>
             <th colspan="8" style="background:#16436e;text-align:center">ASSEMBLAGE</th>
           </tr>
           <tr class="sub-head">
-            <th title="Cisaille guillotine">CG</th><th title="Encocheuse">EAV</th><th title="Scie à ruban">SR</th><th title="Coupe plasma 3mm">CP3</th><th title="Oxycoupage">OM</th><th title="Perceuse colonne">PC</th><th title="Perceuse magnétique">PM</th><th title="Poinçonneuse">PO</th><th title="Coupe plasma 1.5mm">CP15</th><th title="Ébavurage">E</th><th title="Contrôle">CTL</th>
+            <th title="Traçage">TR</th><th title="Traçage informatique">TRAO</th><th title="Gabarit">GAB</th><th title="Contrôle">CTL</th>
+            <th title="Cisaille guillotine">CG</th><th title="Encocheuse">EAV</th><th title="Scie à ruban">SR</th><th title="Coupe plasma 3mm">CP3</th><th title="Coupe plasma 1.5mm">CP15</th><th title="Perceuse colonne">PC</th><th title="Perceuse magnétique">PM</th><th title="Poinçonneuse">PO</th><th title="Ébavurage">E</th><th title="Contrôle">CTL</th>
             <th title="Rouleuse manuelle">R1</th><th title="Rouleuse 3R">R2</th><th title="Plieuse universelle">PU</th><th title="Presse plieuse 40T">PP1</th><th title="Presse plieuse 50T">PP2</th><th title="Cintreuse tube">CT</th><th title="Cintreuse profilés">CP</th><th title="Contrôle">CTL</th>
             <th title="Soudage AC">PCA</th><th title="Soudage redressé">PCR</th><th title="Soudage MAG">SM1</th><th title="Soudage MIG">SM2</th><th title="Soudage TIG DC">TIG1</th><th title="Soudage TIG AC/DC">TIG2</th><th title="Soudeuse par résistance">SPR</th><th title="Contrôle final">CTL</th>
           </tr>
@@ -530,19 +531,21 @@
     <div class="recap-bloc">
       <div class="recap-cell">
         <div class="recap-label">⏱ Temps total prévu</div>
+        <div class="recap-ligne"><span>Traçage</span><span class="zone-temps" style="width:80px"></span></div>
         <div class="recap-ligne"><span>Débit/Prép.</span><span class="zone-temps" style="width:80px"></span></div>
         <div class="recap-ligne"><span>Mise en forme</span><span class="zone-temps" style="width:80px"></span></div>
         <div class="recap-ligne"><span>Assemblage</span><span class="zone-temps" style="width:80px"></span></div>
       </div>
       <div class="recap-cell">
         <div class="recap-label">✅ Temps réel</div>
+        <div class="recap-ligne"><span>Traçage</span><span class="zone-temps" style="width:80px"></span></div>
         <div class="recap-ligne"><span>Débit/Prép.</span><span class="zone-temps" style="width:80px"></span></div>
         <div class="recap-ligne"><span>Mise en forme</span><span class="zone-temps" style="width:80px"></span></div>
         <div class="recap-ligne"><span>Assemblage</span><span class="zone-temps" style="width:80px"></span></div>
       </div>
       <div class="recap-cell">
         <div class="recap-label">📋 Observations</div>
-        <div style="border:1.5px dashed #bbb;border-radius:6px;height:70px;margin-top:4px;background:white"></div>
+        <div style="border:1.5px dashed #bbb;border-radius:6px;height:90px;margin-top:4px;background:white"></div>
       </div>
     </div>
 
@@ -558,12 +561,7 @@
 
   <div class="mob-of-selector">
     <label>N° Ordre de Fabrication</label>
-    <select id="input-of">
-      <option value="">Sélectionner un N° OF...</option>
-      <option value="NOM-OF-EXCEL-1">NOM-OF-EXCEL-1</option>
-      <option value="NOM-OF-EXCEL-2">NOM-OF-EXCEL-2</option>
-      <option value="NOM-OF-EXCEL-3">NOM-OF-EXCEL-3</option>
-    </select>
+    <input type="text" id="input-of" placeholder="Saisir votre N° OF d'origine...">
     <label>Opérateur</label>
     <input type="text" id="input-operateur" placeholder="Votre nom">
   </div>
@@ -586,21 +584,25 @@
 <script>
 // ===== DONNÉES PIÈCES =====
 const PHASES = [
+  { id: 'tracage', nom: 'TRAÇAGE', couleur: '#1e4080' },
   { id: 'debit', nom: 'DÉBIT / PRÉPARATION', couleur: '#2a5298' },
   { id: 'forme', nom: 'MISE EN FORME', couleur: '#1e5799' },
   { id: 'assemblage', nom: 'ASSEMBLAGE', couleur: '#16436e' }
 ];
 
 const COL_MAP = {
+  4: {phase:'tracage', code:'TR', nom:'Traçage'},
+  5: {phase:'tracage', code:'TRAO', nom:'Traçage informatique'},
+  6: {phase:'tracage', code:'GAB', nom:'Gabarit'},
+  7: {phase:'tracage', code:'CTL', nom:'Contrôle'},
   8: {phase:'debit', code:'CG', nom:'Cisaille guillotine'},
   9: {phase:'debit', code:'EAV', nom:'Encocheuse à angle variable'},
   10: {phase:'debit', code:'SR', nom:'Scie à ruban'},
   11: {phase:'debit', code:'CP3', nom:'Coupe plasma 3mm'},
-  12: {phase:'debit', code:'OM', nom:'Poste oxycoupage manuel'},
+  16: {phase:'debit', code:'CP15', nom:'Coupe plasma 1.5mm'},
   13: {phase:'debit', code:'PC', nom:'Perçeuse à colonne'},
   14: {phase:'debit', code:'PM', nom:'Perceuse magnétique'},
   15: {phase:'debit', code:'PO', nom:'Poinçonneuse'},
-  16: {phase:'debit', code:'CP15', nom:'Coupe plasma 1.5mm'},
   17: {phase:'debit', code:'E', nom:'Ébavurage'},
   18: {phase:'debit', code:'CTL', nom:'Contrôle'},
   19: {phase:'forme', code:'R1', nom:'Rouleuse manuelle 3R'},
@@ -622,33 +624,35 @@ const COL_MAP = {
 };
 
 const PIECES = [
-  { rep:'1.1', nbr:2, nom:'Flan 1', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3},{col:23,num:4},{col:26,num:5},{col:32,num:6},{col:34,num:7}] },
-  { rep:'1.2', nbr:2, nom:'Flan 2', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3},{col:23,num:4},{col:26,num:5},{col:32,num:6},{col:34,num:7}] },
-  { rep:'1.3', nbr:1, nom:'Cloison', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3}] },
-  { rep:'1.4', nbr:6, nom:'Omega', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3},{col:23,num:4},{col:26,num:5}] },
+  { rep:'CP3', nbr:1, nom:'Toutes les pièces (Ép. 3mm)', etapes:[{col:11,num:1}] },
+  { rep:'CP15', nbr:1, nom:'Toutes les pièces (Ép. 1.5mm)', etapes:[{col:16,num:1}] },
+  { rep:'1.1', nbr:2, nom:'Flan 1', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
+  { rep:'1.2', nbr:2, nom:'Flan 2', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
+  { rep:'1.3', nbr:1, nom:'Cloison', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4}] },
+  { rep:'1.4', nbr:6, nom:'Omega', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6}] },
   { rep:'1.5', nbr:2, nom:'Rail cloison', etapes:[] },
-  { rep:'2.1', nbr:1, nom:'Demie trémie droite', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3},{col:23,num:4},{col:26,num:5},{col:32,num:6},{col:34,num:7}] },
-  { rep:'2.2', nbr:1, nom:'Demie trémie gauche', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3},{col:23,num:4},{col:26,num:5},{col:32,num:6},{col:34,num:7}] },
-  { rep:'2.3', nbr:1, nom:'Bec orientable', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3},{col:20,num:4},{col:27,num:5},{col:34,num:6}] },
-  { rep:'2.4', nbr:1, nom:'Tube bec orientable', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3},{col:20,num:4},{col:27,num:5},{col:34,num:6}] },
-  { rep:'2.5', nbr:1, nom:'Tube sortie de trémie', etapes:[{col:10,num:1},{col:17,num:2},{col:18,num:3}] },
+  { rep:'2.1', nbr:1, nom:'Demie trémie droite', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
+  { rep:'2.2', nbr:1, nom:'Demie trémie gauche', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
+  { rep:'2.3', nbr:1, nom:'Bec orientable', etapes:[{col:5,num:1},{col:6,num:2},{col:7,num:3},{col:17,num:4},{col:18,num:5},{col:20,num:6},{col:27,num:7},{col:34,num:8}] },
+  { rep:'2.4', nbr:1, nom:'Tube bec orientable', etapes:[{col:5,num:1},{col:6,num:2},{col:7,num:3},{col:17,num:4},{col:18,num:5},{col:20,num:6},{col:27,num:7},{col:34,num:8}] },
+  { rep:'2.5', nbr:1, nom:'Tube sortie de trémie', etapes:[{col:4,num:1},{col:7,num:2},{col:10,num:3},{col:17,num:4},{col:18,num:5}] },
   { rep:'2.6', nbr:1, nom:'Rail cloison 2', etapes:[] },
-  { rep:'2.7', nbr:1, nom:'Trappe', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3},{col:23,num:4},{col:26,num:5}] },
-  { rep:'2.8', nbr:1, nom:'Rail trappe', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3},{col:23,num:4},{col:26,num:5},{col:32,num:6},{col:34,num:7}] },
-  { rep:'2.9', nbr:1, nom:'Butée trappe', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3},{col:23,num:4},{col:26,num:5},{col:32,num:6}] },
-  { rep:'3.1', nbr:4, nom:'Montant', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3},{col:23,num:4},{col:26,num:5}] },
-  { rep:'3.2', nbr:2, nom:'Partie basse 1', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3},{col:23,num:4},{col:26,num:5}] },
-  { rep:'3.3', nbr:2, nom:'Partie basse 2', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3},{col:23,num:4},{col:26,num:5}] },
-  { rep:'3.4', nbr:2, nom:'Traverse', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3},{col:23,num:4},{col:26,num:5}] },
-  { rep:'3.5', nbr:4, nom:'Platine', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3}] },
-  { rep:'3.6.1', nbr:1, nom:'Renfort montant droit', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3},{col:23,num:4},{col:26,num:5},{col:32,num:6},{col:34,num:7}] },
-  { rep:'3.6.2', nbr:1, nom:'Renfort montant gauche', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3},{col:23,num:4},{col:26,num:5},{col:32,num:6},{col:34,num:7}] },
-  { rep:'3.7', nbr:2, nom:'Crochet chaîne', etapes:[{col:10,num:1},{col:17,num:2},{col:18,num:3}] },
-  { rep:'3.8', nbr:2, nom:'Gousset Montant', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3}] },
-  { rep:'3.9', nbr:2, nom:'Gousset Renfort Montant', etapes:[{col:11,num:1},{col:17,num:2},{col:18,num:3}] }
+  { rep:'2.7', nbr:1, nom:'Trappe', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6}] },
+  { rep:'2.8', nbr:1, nom:'Rail trappe', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
+  { rep:'2.9', nbr:1, nom:'Butée trappe', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7}] },
+  { rep:'3.1', nbr:4, nom:'Montant', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6}] },
+  { rep:'3.2', nbr:2, nom:'Partie basse 1', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6}] },
+  { rep:'3.3', nbr:2, nom:'Partie basse 2', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6}] },
+  { rep:'3.4', nbr:2, nom:'Traverse', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6}] },
+  { rep:'3.5', nbr:4, nom:'Platine', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4}] },
+  { rep:'3.6.1', nbr:1, nom:'Renfort montant droit', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
+  { rep:'3.6.2', nbr:1, nom:'Renfort montant gauche', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
+  { rep:'3.7', nbr:2, nom:'Crochet chaîne', etapes:[{col:4,num:1},{col:7,num:2},{col:10,num:3},{col:17,num:4},{col:18,num:5}] },
+  { rep:'3.8', nbr:2, nom:'Gousset Montant', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4}] },
+  { rep:'3.9', nbr:2, nom:'Gousset Renfort Montant', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4}] }
 ];
 
-const COLS_FICHE = [8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34];
+const COLS_FICHE = [4,5,6,7, 8,9,10,11,16,13,14,15,17,18, 19,20,21,22,23,24,25,26, 27,28,29,30,31,32,33,34];
 
 // ===== ÉTAT =====
 let etat = {}; 
@@ -735,14 +739,15 @@ function renderListePieces() {
   const container = document.getElementById('liste-pieces');
   container.innerHTML = '';
 
-  const groupes = { '1': [], '2': [], '3': [] };
+  const groupes = { 'C': [], '1': [], '2': [], '3': [] };
   PIECES.forEach(p => {
-    const g = p.rep.charAt(0);
-    if (groupes[g]) groupes[g].push(p);
-    else groupes['3'].push(p);
+    let g = p.rep.charAt(0);
+    if (g === 'C') g = 'C';
+    else if (!groupes[g]) g = '3';
+    groupes[g].push(p);
   });
 
-  const noms = { '1': 'Ensemble 1 — Flancs & Cloisons', '2': 'Ensemble 2 — Trémie', '3': 'Ensemble 3 — Structure' };
+  const noms = { 'C': 'DÉCOUPES PLASMA', '1': 'Ensemble 1 — Flancs & Cloisons', '2': 'Ensemble 2 — Trémie', '3': 'Ensemble 3 — Structure' };
 
   Object.keys(groupes).forEach(g => {
     if (!groupes[g].length) return;
@@ -760,13 +765,17 @@ function renderListePieces() {
 function getStatutPiece(p) {
   const e = etat[p.rep];
   if (!e) return 'attente';
-  const etapes = Object.values(e.etapes);
-  if (etapes.length === 0) return 'attente';
-  const terminees = etapes.filter(x => x.fin !== null).length;
-  const encours = etapes.filter(x => x.enCours).length;
+  
+  // NOUVEAU: Le statut ignore complètement les étapes de traçage (col <= 7)
+  const etapesMobile = p.etapes.filter(et => et.col > 7);
+  if (etapesMobile.length === 0) return 'attente';
+
+  const terminees = etapesMobile.filter(et => e.etapes[et.col].fin !== null).length;
+  const encours = etapesMobile.filter(et => e.etapes[et.col].enCours).length;
+  
   if (encours > 0) return 'encours';
-  if (terminees > 0 && terminees < etapes.length) return 'encours';
-  if (terminees === etapes.length && etapes.length > 0) return 'termine';
+  if (terminees > 0 && terminees < etapesMobile.length) return 'encours';
+  if (terminees === etapesMobile.length && etapesMobile.length > 0) return 'termine';
   return 'attente';
 }
 
@@ -791,7 +800,11 @@ function renderPieceCard(p) {
   `;
 
   const containerEtapes = card.querySelector('.piece-etapes');
-  p.etapes.forEach(e => {
+  
+  // NOUVEAU: On masque tout le traçage sur l'application mobile (col > 7)
+  const etapesMobile = p.etapes.filter(e => e.col > 7);
+  
+  etapesMobile.forEach((e, index) => {
     const etapeData = COL_MAP[e.col];
     const etatEtape = etat[p.rep].etapes[e.col];
     let classNum = '', htmlBtn = '', htmlTimer = '';
@@ -808,10 +821,13 @@ function renderPieceCard(p) {
       htmlTimer = `<div class="etape-timer">${formatTemps(etatEtape.duree)}</div>`;
     }
 
+    // NOUVEAU: On renumérote proprement les étapes sur le mobile (1, 2, 3...)
+    const numMobile = index + 1;
+
     const item = document.createElement('div');
     item.className = 'etape-item';
     item.innerHTML = `
-      <div class="etape-num ${classNum}">${e.num}</div>
+      <div class="etape-num ${classNum}">${numMobile}</div>
       <div class="etape-label">${etapeData.nom} <span class="etape-code">${etapeData.code}</span></div>
       ${htmlTimer}
       ${htmlBtn}
@@ -881,7 +897,40 @@ function demarrerTimerTotal() {
 }
 
 function exporterDonnees() {
-  alert("La base de données Google Sheets arrivera à la prochaine étape !");
+  const of = document.getElementById('input-of').value || 'Non renseigné';
+  const operateur = document.getElementById('input-operateur').value || 'Non renseigné';
+  const date = new Date().toLocaleString('fr-FR');
+
+  let lignes = [`RÉCAPITULATIF SUIVI ATELIER`, `Caisson de Semence — BTS 2`, ``, `OF: ${of}`, `Opérateur: ${operateur}`, `Date export: ${date}`, ``, `───────────────────────────────────`];
+
+  let tempsTotal = 0;
+
+  PIECES.forEach(p => {
+    // NOUVEAU: À l'export, on ne retient que les opérations mobiles (on ignore le traçage)
+    const etapesValides = p.etapes.filter(e => e.col > 7 && etat[p.rep] && etat[p.rep].etapes[e.col] && etat[p.rep].etapes[e.col].fin);
+    if (etapesValides.length === 0) return;
+    
+    lignes.push(``, `${p.rep} — ${p.nom} (Qté: ${p.nbr})`);
+    
+    etapesValides.forEach((e, index) => {
+      const col = COL_MAP[e.col] || { nom: `Op.${e.num}` };
+      const d = etat[p.rep].etapes[e.col].duree;
+      tempsTotal += d;
+      // On affiche avec le nouveau numéro de l'application mobile
+      lignes.push(`  Étape ${index + 1} — ${col.nom}: ${formatTemps(d)}`);
+    });
+  });
+
+  lignes.push(``, `───────────────────────────────────`, `Temps total session: ${formatTemps(tempsTotal)}`);
+
+  const blob = new Blob([lignes.join('\n')], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Suivi_${of.replace(/[^a-zA-Z0-9]/g, '_')}_${new Date().getTime()}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 </script>
 </body>
