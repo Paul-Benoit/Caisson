@@ -162,97 +162,54 @@
   }
   .fiche-titre-bloc h1 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; }
   .fiche-titre-bloc .sous-titre { font-size: 0.8rem; opacity: 0.7; font-family: 'DM Mono', monospace; margin-top: 2px; }
-  .fiche-meta {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border-bottom: 2px solid var(--gris-bord);
-    background: #f8f9fc;
-  }
-  .fiche-meta-cell { padding: 0.7rem 1rem; border-right: 1px solid var(--gris-bord); }
-  .fiche-meta-cell:last-child { border-right: none; }
-  .fiche-meta-cell .label { font-size: 0.65rem; font-weight: 700; color: #888; text-transform: uppercase; font-family: 'DM Mono', monospace; }
-  .fiche-meta-cell .valeur { font-size: 0.9rem; font-weight: 600; color: var(--bleu); margin-top: 2px; }
-
+  
   /* Tableau pièces */
   .tableau-wrap { overflow-x: auto; }
   table.fiche-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
   table.fiche-table thead tr { background: var(--bleu); color: white; }
   table.fiche-table thead th { padding: 0.6rem 0.3rem; text-align: left; font-weight: 700; font-size: 0.65rem; text-transform: uppercase; border-right: 1px solid rgba(255,255,255,0.15); white-space: nowrap; }
-  table.fiche-table thead th:last-child { border-right: none; }
   table.fiche-table thead .sub-head { background: #2d4a8a; }
   table.fiche-table tbody tr:nth-child(even) { background: #f8f9fc; }
   table.fiche-table tbody td { padding: 0.4rem 0.3rem; border-bottom: 1px solid var(--gris-bord); border-right: 1px solid var(--gris-bord); vertical-align: middle; }
-  table.fiche-table tbody td:last-child { border-right: none; }
   .etape-badge { background: var(--bleu); color: white; border-radius: 4px; padding: 2px 5px; font-size: 0.65rem; font-weight: 700; font-family: 'DM Mono', monospace; }
-  .etape-vide { color: #ccc; text-align: center; }
   .col-ref { font-family: 'DM Mono', monospace; font-weight: 700; color: var(--bleu); }
   .col-nbr { text-align: center; font-weight: 700; }
 
   /* QR code section */
   .qr-section { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 2rem; border-top: 2px solid var(--gris-bord); background: #f8f9fc; }
-  #qrcode-fiche canvas, #qrcode-fiche img { border-radius: 8px; }
   .qr-info h3 { font-size: 1rem; font-weight: 800; color: var(--bleu); margin-bottom: 0.3rem; }
   .qr-info p { font-size: 0.8rem; color: #555; line-height: 1.5; }
 
   /* ===== VUE MOBILE ===== */
   #vue-mobile { display: none; background: var(--bleu); min-height: 100vh; }
-
   .mob-header { background: var(--bleu); padding: 1.2rem 1.2rem 0.5rem; color: white; }
-  .mob-header h2 { font-size: 1.1rem; font-weight: 800; }
-  .mob-header .mob-sub { font-size: 0.75rem; font-family: 'DM Mono', monospace; opacity: 0.6; margin-top: 2px; }
-
-  .mob-operateur {
-    padding: 0.5rem 1.2rem 1rem;
-    color: white;
-    font-size: 0.85rem;
-    font-family: 'DM Mono', monospace;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  .mob-operateur { padding: 0.5rem 1.2rem 1rem; color: white; font-size: 0.85rem; font-family: 'DM Mono', monospace; display: flex; justify-content: space-between; }
   .mob-operateur span { font-weight: 700; color: var(--orange); }
-
   .mob-body { background: var(--gris); border-radius: 20px 20px 0 0; padding: 1.2rem 1rem; min-height: calc(100vh - 150px); }
-
-  .mob-section-titre { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: #888; margin-bottom: 0.7rem; margin-top: 1rem; }
-  .mob-section-titre:first-child { margin-top: 0; }
-
+  .mob-section-titre { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--bleu-clair); margin-bottom: 0.7rem; margin-top: 1.2rem; border-left: 3px solid var(--orange); padding-left: 8px; }
   .piece-card { background: white; border-radius: 14px; margin-bottom: 0.8rem; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-  .piece-card-header { padding: 0.8rem 1rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
+  .piece-card-header { padding: 0.8rem 1rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
   .piece-ref { font-family: 'DM Mono', monospace; font-size: 0.7rem; font-weight: 700; color: var(--orange); background: rgba(232,93,26,0.1); padding: 2px 8px; border-radius: 4px; }
-  .piece-nom { font-size: 0.9rem; font-weight: 700; color: var(--bleu); margin-top: 3px; }
-  .piece-nbr { font-size: 0.75rem; color: #888; }
-  .piece-statut { font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; white-space: nowrap; }
+  .piece-nom { font-size: 0.9rem; font-weight: 700; color: var(--bleu); }
+  .piece-statut { font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
   .statut-attente { background: #eee; color: #888; }
   .statut-encours { background: rgba(240,165,0,0.15); color: var(--jaune); }
   .statut-termine { background: rgba(30,124,74,0.12); color: var(--vert); }
-
   .piece-etapes { border-top: 1px solid var(--gris-bord); display: none; padding: 0.5rem 0.8rem 0.8rem; }
   .piece-etapes.open { display: block; }
   .etape-item { display: flex; align-items: center; gap: 0.7rem; padding: 0.5rem 0.3rem; border-bottom: 1px solid #f0f0f0; }
-  .etape-item:last-child { border-bottom: none; }
-  .etape-num { width: 28px; height: 28px; border-radius: 50%; background: var(--gris); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 800; color: #888; flex-shrink: 0; }
+  .etape-num { width: 28px; height: 28px; border-radius: 50%; background: var(--gris); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 800; color: #888; }
   .etape-num.actif { background: var(--orange); color: white; }
   .etape-num.fini { background: var(--vert); color: white; }
-  .etape-label { flex: 1; font-size: 0.82rem; font-weight: 600; color: var(--bleu); line-height: 1.2; }
-  .etape-code { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: #aaa; display: block; margin-top: 2px; }
-  
-  /* Pointage Text */
-  .pointage-info { font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 700; color: var(--bleu-clair); min-width: 60px; text-align: right; }
+  .etape-label { flex: 1; font-size: 0.82rem; font-weight: 600; color: var(--bleu); }
+  .pointage-info { font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 700; text-align: right; }
   .pointage-info.running { color: var(--jaune); }
-  .pointage-info.done { color: var(--vert); font-size: 0.7rem; }
-
-  /* Boutons action */
-  .btn-demarrer { background: var(--bleu-clair); color: white; border: none; border-radius: 8px; padding: 6px 12px; font-size: 0.72rem; font-weight: 700; cursor: pointer; font-family: 'Syne', sans-serif; white-space: nowrap; }
-  .btn-arreter { background: var(--orange); color: white; border: none; border-radius: 8px; padding: 6px 12px; font-size: 0.72rem; font-weight: 700; cursor: pointer; font-family: 'Syne', sans-serif; white-space: nowrap; }
-
-  /* Récap mobile */
-  .mob-recap { background: var(--bleu); color: white; border-radius: 14px; padding: 1rem 1.2rem; margin-bottom: 1rem; display: flex; gap: 1.5rem; justify-content: space-around; text-align: center; }
-  .mob-recap-stat .val { font-size: 1.5rem; font-weight: 800; font-family: 'DM Mono', monospace; }
-  .mob-recap-stat .lbl { font-size: 0.65rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.5px; }
-
-  .nav-retour { background: rgba(255,255,255,0.1); border: none; color: white; font-family: 'Syne', sans-serif; font-size: 0.8rem; padding: 0.4rem 0.9rem; border-radius: 8px; cursor: pointer; margin-top: 0.5rem; display: inline-flex; align-items: center; gap: 4px; }
-  .btn-export { background: var(--vert); color: white; border: none; border-radius: 12px; padding: 0.9rem; width: 100%; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; margin-top: 1rem; display: flex; align-items: center; justify-content: center; }
+  .pointage-info.done { color: var(--vert); }
+  .btn-demarrer { background: var(--bleu-clair); color: white; border: none; border-radius: 8px; padding: 6px 12px; font-weight: 700; cursor: pointer; }
+  .btn-arreter { background: var(--orange); color: white; border: none; border-radius: 8px; padding: 6px 12px; font-weight: 700; cursor: pointer; }
+  .mob-recap { background: var(--bleu); color: white; border-radius: 14px; padding: 1rem; margin-bottom: 1rem; display: flex; justify-content: space-around; text-align: center; }
+  .btn-export { background: var(--vert); color: white; border: none; border-radius: 12px; padding: 1rem; width: 100%; font-weight: 700; cursor: pointer; margin-top: 1rem; }
+  .nav-retour { background: rgba(255,255,255,0.1); border: none; color: white; padding: 0.4rem 0.9rem; border-radius: 8px; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -261,16 +218,8 @@
   <h1>Caisson de Semence</h1>
   <p>BTS 2 — BENOIT Paul · BODEI Enzo</p>
   <div class="choix-btns">
-    <button class="choix-btn" onclick="afficherFiche()">
-      <span class="icone">🖨️</span>
-      Fiche à imprimer
-      <span style="font-size:0.75rem;opacity:0.7;font-weight:400">Générer le document</span>
-    </button>
-    <button class="choix-btn orange" onclick="afficherProfils()">
-      <span class="icone">📱</span>
-      Saisie atelier
-      <span style="font-size:0.75rem;opacity:0.85;font-weight:400">Pointage des temps</span>
-    </button>
+    <button class="choix-btn" onclick="afficherFiche()">🖨️ Fiche à imprimer</button>
+    <button class="choix-btn orange" onclick="afficherProfils()">📱 Saisie atelier</button>
   </div>
 </div>
 
@@ -289,46 +238,12 @@
       <button onclick="retourSelection()" style="background:#666">← Retour</button>
     </div>
   </div>
-
   <div class="fiche-page">
     <div class="fiche-titre-bloc">
-      <div>
-        <h1>FICHE D'ORDONNANCEMENT</h1>
-        <div class="sous-titre">CAISSON DE SEMENCE — BTS 2 · BENOIT Paul ; BODEI Enzo</div>
-      </div>
-      <div id="qrcode-fiche"></div>
+        <div><h1>FICHE D'ORDONNANCEMENT</h1><div class="sous-titre">CAISSON DE SEMENCE — BTS 2</div></div>
+        <div id="qrcode-fiche"></div>
     </div>
-
-    <div class="tableau-wrap">
-      <table class="fiche-table">
-        <thead>
-          <tr>
-            <th rowspan="2">Rép.</th>
-            <th rowspan="2">Nbr</th>
-            <th rowspan="2">Désignation</th>
-            <th colspan="4" style="background:#1e4080;text-align:center">TRAÇAGE</th>
-            <th colspan="10" style="background:#2a5298;text-align:center">DÉBIT / PRÉPARATION</th>
-            <th colspan="8" style="background:#1e5799;text-align:center">MISE EN FORME</th>
-            <th colspan="8" style="background:#16436e;text-align:center">ASSEMBLAGE</th>
-          </tr>
-          <tr class="sub-head">
-            <th title="Traçage">TR</th><th title="Traçage informatique">TRAO</th><th title="Gabarit">GAB</th><th title="Contrôle">CTL</th>
-            <th title="Cisaille guillotine">CG</th><th title="Encocheuse">EAV</th><th title="Scie à ruban">SR</th><th title="Coupe plasma 3mm">CP3</th><th title="Coupe plasma 1.5mm">CP15</th><th title="Perceuse colonne">PC</th><th title="Perceuse magnétique">PM</th><th title="Poinçonneuse">PO</th><th title="Ébavurage">E</th><th title="Contrôle">CTL</th>
-            <th title="Rouleuse manuelle">R1</th><th title="Rouleuse 3R">R2</th><th title="Plieuse universelle">PU</th><th title="Presse plieuse 40T">PP1</th><th title="Presse plieuse 50T">PP2</th><th title="Cintreuse tube">CT</th><th title="Cintreuse profilés">CP</th><th title="Contrôle">CTL</th>
-            <th title="Soudage AC">PCA</th><th title="Soudage redressé">PCR</th><th title="Soudage MAG">SM1</th><th title="Soudage MIG">SM2</th><th title="Soudage TIG DC">TIG1</th><th title="Soudage TIG AC/DC">TIG2</th><th title="Soudeuse par résistance">SPR</th><th title="Contrôle final">CTL</th>
-          </tr>
-        </thead>
-        <tbody id="tbody-fiche"></tbody>
-      </table>
-    </div>
-
-    <div class="qr-section">
-      <div id="qrcode-fiche2" style="flex-shrink:0"></div>
-      <div class="qr-info">
-        <h3>📱 Scannez pour pointer en atelier</h3>
-        <p>Ce QR code vous connectera **directement** à l'interface mobile de l'atelier pour pointer vos temps de fabrication.</p>
-      </div>
-    </div>
+    <div class="tableau-wrap"><table class="fiche-table"><thead id="thead-fiche"></thead><tbody id="tbody-fiche"></tbody></table></div>
   </div>
 </div>
 
@@ -336,38 +251,19 @@
   <div class="mob-header">
     <button class="nav-retour" onclick="retourSelection()">← Accueil</button>
     <h2 style="margin-top:0.5rem">Suivi Atelier</h2>
-    <div class="mob-sub">Caisson de Semence — Pointage des temps</div>
   </div>
-  <div class="mob-operateur">
-    Opérateur : <span id="nom-operateur-display">...</span>
-  </div>
-
+  <div class="mob-operateur">Opérateur : <span id="nom-operateur-display">...</span></div>
   <div class="mob-body">
     <div class="mob-recap">
-      <div class="mob-recap-stat"><div class="val" id="stat-encours">0</div><div class="lbl">En cours</div></div>
-      <div class="mob-recap-stat"><div class="val" id="stat-terminees">0</div><div class="lbl">Terminées</div></div>
+        <div><div id="stat-encours" style="font-size:1.5rem; font-weight:800">0</div><div style="font-size:0.6rem; opacity:0.6">EN COURS</div></div>
+        <div><div id="stat-terminees" style="font-size:1.5rem; font-weight:800">0</div><div style="font-size:0.6rem; opacity:0.6">TERMINÉES</div></div>
     </div>
-
     <div id="liste-pieces"></div>
-
-    <button class="btn-export" onclick="exporterDonnees()">
-      📋 Exporter la session
-    </button>
+    <button class="btn-export" onclick="exporterDonnees()">📋 Exporter la session</button>
   </div>
 </div>
 
 <script>
-// Routage automatique si QR code scanné
-window.onload = function() {
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get('vue') === 'atelier') {
-    afficherProfils();
-  }
-};
-
-let operateurActif = "Inconnu";
-
-// ===== DONNÉES =====
 const COL_MAP = {
   4: {code:'TR', nom:'Traçage'}, 5: {code:'TRAO', nom:'Traçage info.'}, 6: {code:'GAB', nom:'Gabarit'}, 7: {code:'CTL', nom:'Contrôle'},
   8: {code:'CG', nom:'Cisaille guillotine'}, 9: {code:'EAV', nom:'Encocheuse'}, 10: {code:'SR', nom:'Scie à ruban'},
@@ -405,26 +301,36 @@ const PIECES = [
   { rep:'3.9', nbr:2, nom:'Gousset Renfort', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4}] }
 ];
 
-const COLS_FICHE = [4,5,6,7, 8,9,10,11,16,13,14,15,17,18, 19,20,21,22,23,24,25,26, 27,28,29,30,31,32,33,34];
-
 let etat = {}; 
 PIECES.forEach(p => {
   etat[p.rep] = { etapes: {}, ouvert: false };
   p.etapes.forEach(e => etat[p.rep].etapes[e.col] = { debut: null, fin: null, enCours: false });
 });
 
-// ===== NAVIGATION =====
 function afficherFiche() {
   document.getElementById('vue-selection').style.display = 'none';
   document.getElementById('vue-fiche').style.display = 'block';
-  genererTableauFiche();
-  genererQR();
+  const thead = document.getElementById('thead-fiche');
+  thead.innerHTML = `<tr><th rowspan="2">Rép.</th><th rowspan="2">Nbr</th><th rowspan="2">Désignation</th><th colspan="4">TRAÇAGE</th><th colspan="10">DÉBIT</th><th colspan="8">FORME</th><th colspan="8">SOUDAGE</th></tr><tr class="sub-head"><th>TR</th><th>TRAO</th><th>GAB</th><th>CTL</th><th>CG</th><th>EAV</th><th>SR</th><th>CP3</th><th>CP15</th><th>PC</th><th>PM</th><th>PO</th><th>E</th><th>CTL</th><th>R1</th><th>R2</th><th>PU</th><th>PP1</th><th>PP2</th><th>CT</th><th>CP</th><th>CTL</th><th>PCA</th><th>PCR</th><th>SM1</th><th>SM2</th><th>TIG1</th><th>TIG2</th><th>SPR</th><th>CTL</th></tr>`;
+  const tbody = document.getElementById('tbody-fiche');
+  tbody.innerHTML = '';
+  const cols = [4,5,6,7, 8,9,10,11,16,13,14,15,17,18, 19,20,21,22,23,24,25,26, 27,28,29,30,31,32,33,34];
+  PIECES.forEach(p => {
+    const tr = document.createElement('tr');
+    let h = `<td class="col-ref">${p.rep}</td><td class="col-nbr">${p.nbr}</td><td>${p.nom}</td>`;
+    cols.forEach(c => {
+        const et = p.etapes.find(x => x.col === c);
+        h += et ? `<td><span class="etape-badge">${et.num}</span></td>` : `<td></td>`;
+    });
+    tr.innerHTML = h; tbody.appendChild(tr);
+  });
 }
+
 function afficherProfils() {
   document.getElementById('vue-selection').style.display = 'none';
-  document.getElementById('vue-fiche').style.display = 'none';
   document.getElementById('vue-profils').style.display = 'flex';
 }
+
 function choisirProfil(nom) {
   operateurActif = nom;
   document.getElementById('nom-operateur-display').textContent = nom;
@@ -432,198 +338,76 @@ function choisirProfil(nom) {
   document.getElementById('vue-mobile').style.display = 'block';
   renderListePieces();
 }
-function retourSelection() {
-  window.location.href = window.location.href.split('?')[0]; // Enlève le paramètre URL pour retourner à l'accueil propre
-}
-
-// ===== VUE FICHE =====
-function genererTableauFiche() {
-  const tbody = document.getElementById('tbody-fiche');
-  tbody.innerHTML = '';
-  PIECES.forEach(p => {
-    const tr = document.createElement('tr');
-    const etapeMap = {};
-    p.etapes.forEach(e => etapeMap[e.col] = e.num);
-
-    tr.innerHTML = `<td class="col-ref">${p.rep}</td><td class="col-nbr">${p.nbr}</td><td>${p.nom}</td>` +
-      COLS_FICHE.map(col => etapeMap[col] ? `<td style="text-align:center"><span class="etape-badge">${etapeMap[col]}</span></td>` : `<td class="etape-vide">·</td>`).join('');
-    tbody.appendChild(tr);
-  });
-}
-
-function genererQR() {
-  const base = window.location.href.split('?')[0];
-  const url = base + '?vue=atelier'; 
-  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=${encodeURIComponent(url)}`;
-  
-  const el = document.getElementById('qrcode-fiche');
-  const img = document.createElement('img');
-  img.src = qrUrl; img.width = 80; img.height = 80;
-  img.style.borderRadius = '8px'; img.style.background = 'white'; img.style.padding = '4px';
-  el.innerHTML = ''; el.appendChild(img);
-  
-  const img2 = img.cloneNode();
-  img2.width = 120; img2.height = 120;
-  document.getElementById('qrcode-fiche2').innerHTML = '';
-  document.getElementById('qrcode-fiche2').appendChild(img2);
-}
-
-// ===== VUE MOBILE & LOGIQUE =====
-// Cette fonction cache le traçage, ET masque l'ébavurage/contrôle pour tout le monde
-function getEtapesMobile(p) {
-  return p.etapes.filter(e => {
-    if (e.col <= 7) return false; // Cache Traçage
-    if (e.col === 17 || e.col === 18) return false; // Cache Ébavurage et Contrôle débit
-    return true;
-  });
-}
-
-function getStatutPiece(p) {
-  const etapesMobile = getEtapesMobile(p);
-  if (etapesMobile.length === 0) return 'attente';
-  
-  const e = etat[p.rep];
-  const terminees = etapesMobile.filter(et => e.etapes[et.col].fin !== null).length;
-  const enCours = etapesMobile.filter(et => e.etapes[et.col].enCours || e.etapes[et.col].fin !== null).length; // Dès qu'un truc a commencé
-  
-  if (terminees === etapesMobile.length) return 'termine';
-  if (enCours > 0) return 'encours';
-  return 'attente';
-}
-
-function mettreAjourStats() {
-  let terminees = 0, encours = 0;
-  PIECES.forEach(p => {
-    if(p.rep === 'CP3' || p.rep === 'CP15') return; // Ne compte pas les menus globaux de coupe comme des pièces
-    const st = getStatutPiece(p);
-    if (st === 'termine') terminees++;
-    if (st === 'encours') encours++;
-  });
-  document.getElementById('stat-terminees').textContent = terminees;
-  document.getElementById('stat-encours').textContent = encours;
-}
 
 function renderListePieces() {
   const container = document.getElementById('liste-pieces');
   container.innerHTML = '';
 
-  const groupes = { 'C': [], '1': [], '2': [], '3': [] };
-  PIECES.forEach(p => {
-    let g = p.rep.charAt(0);
-    if (g === 'C') g = 'C'; else if (!groupes[g]) g = '3';
-    groupes[g].push(p);
+  // LOGIQUE DE TRI : On sépare Plasma et le reste
+  const plasma = PIECES.filter(p => p.rep.startsWith('CP'));
+  const ensemble1 = PIECES.filter(p => p.rep.startsWith('1.'));
+  const ensemble2 = PIECES.filter(p => p.rep.startsWith('2.'));
+  const ensemble3 = PIECES.filter(p => p.rep.startsWith('3.'));
+
+  const groupes = [
+    { titre: 'ÉTAPE GLOBALE : DÉCOUPES PLASMA', liste: plasma },
+    { titre: 'Ensemble 1 — Flancs & Cloisons', liste: ensemble1 },
+    { titre: 'Ensemble 2 — Trémie', liste: ensemble2 },
+    { titre: 'Ensemble 3 — Structure', liste: ensemble3 }
+  ];
+
+  groupes.forEach(g => {
+    if (g.liste.length === 0) return;
+    const t = document.createElement('div');
+    t.className = 'mob-section-titre';
+    t.textContent = g.titre;
+    container.appendChild(t);
+    g.liste.forEach(p => container.appendChild(renderPieceCard(p)));
   });
-
-  const noms = { 'C': 'ÉTAPE GLOBALE : DÉCOUPES PLASMA', '1': 'Ensemble 1 — Flancs & Cloisons', '2': 'Ensemble 2 — Trémie', '3': 'Ensemble 3 — Structure' };
-
-  // NOUVEAU : On force l'ordre ici pour que le "C" reste toujours en haut !
-  const ordreGroupes = ['C', '1', '2', '3'];
-
-  ordreGroupes.forEach(g => {
-    if (!groupes[g].length) return;
-    const titre = document.createElement('div');
-    titre.className = 'mob-section-titre';
-    titre.textContent = noms[g];
-    container.appendChild(titre);
-    groupes[g].forEach(p => container.appendChild(renderPieceCard(p)));
-  });
-
   mettreAjourStats();
 }
 
 function renderPieceCard(p) {
   const card = document.createElement('div');
   card.className = 'piece-card';
-  const statut = getStatutPiece(p);
-  const labels = { attente: 'En attente', encours: 'En cours ▶', termine: '✓ Terminé' };
+  const stat = getStatut(p);
+  card.innerHTML = `<div class="piece-card-header" onclick="toggle('${p.rep}')"><div><span class="piece-ref">${p.rep}</span><div class="piece-nom">${p.nom} x${p.nbr}</div></div><div class="piece-statut statut-${stat}">${stat==='attente'?'Attente':stat==='encours'?'En cours':'Fini'}</div></div><div class="piece-etapes ${etat[p.rep].ouvert?'open':''}" id="et-${p.rep}"></div>`;
+  const sub = card.querySelector(`#et-${p.rep}`);
   
-  card.innerHTML = `
-    <div class="piece-card-header" onclick="toggleEtapes('${p.rep}')">
-      <div>
-        <span class="piece-ref">${p.rep}</span>
-        <div class="piece-nom">${p.nom} <span class="piece-nbr">x${p.nbr}</span></div>
-      </div>
-      <div class="piece-statut statut-${statut}">${labels[statut]}</div>
-    </div>
-    <div class="piece-etapes ${etat[p.rep].ouvert ? 'open' : ''}"></div>
-  `;
-
-  const containerEtapes = card.querySelector('.piece-etapes');
-  const etapesMobile = getEtapesMobile(p);
+  // Masquage Traçage, Ebavurage et Controle Débit sur le mobile
+  const etapesAffichees = p.etapes.filter(e => e.col > 7 && e.col !== 17 && e.col !== 18);
   
-  etapesMobile.forEach((e, index) => {
-    let nomEtape = COL_MAP[e.col].nom;
-    
+  etapesAffichees.forEach((e, i) => {
     const d = etat[p.rep].etapes[e.col];
-    let htmlAction = '';
-
-    if (d.fin) {
-      const duree = Math.floor((d.fin - d.debut) / 60000); // en minutes
-      htmlAction = `<div class="pointage-info done">✓ ${formatHeure(d.debut)} - ${formatHeure(d.fin)} (${duree}m)</div>`;
-    } else if (d.enCours) {
-      htmlAction = `
-        <div class="pointage-info running" style="margin-right:10px">▶ Démarré: ${formatHeure(d.debut)}</div>
-        <button class="btn-arreter" onclick="stopperEtape('${p.rep}', ${e.col})">⏹ Terminer</button>
-      `;
-    } else {
-      htmlAction = `<button class="btn-demarrer" onclick="demarrerEtape('${p.rep}', ${e.col})">▶ Démarrer</button>`;
-    }
-
-    const item = document.createElement('div');
-    item.className = 'etape-item';
-    item.innerHTML = `
-      <div class="etape-num ${d.fin ? 'fini' : (d.enCours ? 'actif' : '')}">${index + 1}</div>
-      <div class="etape-label">${nomEtape} <span class="etape-code">${COL_MAP[e.col].code}</span></div>
-      <div style="display:flex;align-items:center;justify-content:flex-end;flex:1">${htmlAction}</div>
-    `;
-    containerEtapes.appendChild(item);
+    let action = '';
+    if (d.fin) action = `<div class="pointage-info done">✓ ${formatH(d.fin-d.debut)}</div>`;
+    else if (d.enCours) action = `<button class="btn-arreter" onclick="stop('${p.rep}',${e.col})">Terminer</button>`;
+    else action = `<button class="btn-demarrer" onclick="start('${p.rep}',${e.col})">Démarrer</button>`;
+    
+    const div = document.createElement('div');
+    div.className = 'etape-item';
+    div.innerHTML = `<div class="etape-num ${d.fin?'fini':d.enCours?'actif':''}">${i+1}</div><div class="etape-label">${COL_MAP[e.col].nom}</div>${action}`;
+    sub.appendChild(div);
   });
-
   return card;
 }
 
-function formatHeure(ms) {
-  const d = new Date(ms);
-  return d.getHours().toString().padStart(2,'0') + 'h' + d.getMinutes().toString().padStart(2,'0');
+function getStatut(p) {
+    const ets = p.etapes.filter(e => e.col > 7 && e.col !== 17 && e.col !== 18);
+    if (ets.every(e => etat[p.rep].etapes[e.col].fin)) return 'termine';
+    if (ets.some(e => etat[p.rep].etapes[e.col].enCours || etat[p.rep].etapes[e.col].fin)) return 'encours';
+    return 'attente';
 }
-
-function toggleEtapes(rep) { etat[rep].ouvert = !etat[rep].ouvert; renderListePieces(); }
-
-function demarrerEtape(rep, col) {
-  etat[rep].etapes[col].enCours = true;
-  etat[rep].etapes[col].debut = Date.now();
-  renderListePieces();
+function toggle(r) { etat[r].ouvert = !etat[r].ouvert; renderListePieces(); }
+function start(r,c) { etat[r].etapes[c].enCours = true; etat[r].etapes[c].debut = Date.now(); renderListePieces(); }
+function stop(r,c) { etat[r].etapes[c].enCours = false; etat[r].etapes[c].fin = Date.now(); renderListePieces(); }
+function formatH(ms) { return Math.floor(ms/60000) + ' min'; }
+function mettreAjourStats() {
+    document.getElementById('stat-encours').textContent = PIECES.filter(p => !p.rep.startsWith('CP') && getStatut(p) === 'encours').length;
+    document.getElementById('stat-terminees').textContent = PIECES.filter(p => !p.rep.startsWith('CP') && getStatut(p) === 'termine').length;
 }
-
-function stopperEtape(rep, col) {
-  etat[rep].etapes[col].enCours = false;
-  etat[rep].etapes[col].fin = Date.now();
-  renderListePieces();
-}
-
-function exporterDonnees() {
-  const date = new Date().toLocaleString('fr-FR');
-  let lignes = [`RÉCAPITULATIF POINTAGE ATELIER`, `Caisson de Semence — BTS 2`, ``, `Opérateur: ${operateurActif}`, `Date export: ${date}`, ``, `───────────────────────────────────`];
-
-  PIECES.forEach(p => {
-    const etapesMobile = getEtapesMobile(p);
-    const validees = etapesMobile.filter(e => etat[p.rep] && etat[p.rep].etapes[e.col] && etat[p.rep].etapes[e.col].fin);
-    if (validees.length === 0) return;
-    
-    lignes.push(``, `${p.rep} — ${p.nom} (Qté: ${p.nbr})`);
-    validees.forEach((e, index) => {
-      const d = etat[p.rep].etapes[e.col];
-      const duree = Math.floor((d.fin - d.debut) / 60000);
-      lignes.push(`  Étape ${index + 1} — ${COL_MAP[e.col].nom}: De ${formatHeure(d.debut)} à ${formatHeure(d.fin)} (${duree} min)`);
-    });
-  });
-
-  const blob = new Blob([lignes.join('\n')], { type: 'text/plain' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `Pointage_${operateurActif.replace(/[^a-zA-Z]/g,'')}_${new Date().getTime()}.txt`;
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
-}
+function retourSelection() { window.location.reload(); }
+function exporterDonnees() { alert("Exportation réussie dans la console (F12)"); console.log(etat); }
 </script>
 </body>
 </html>
