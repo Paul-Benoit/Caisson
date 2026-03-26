@@ -134,8 +134,8 @@
 
 <script>
 // --- CONFIGURATION GOOGLE SHEETS ---
-// ⚠️ N'OUBLIE PAS DE COLLER TON URL ICI ⚠️
-const gasUrl = 'https://script.google.com/macros/s/AKfycbxkrPkXqTo6OWgd-k6u1v9KUKiamMBYK_BWK2g2FLyZpDa-_olFz5QeqoX-N0HMauQ/exec';
+// ⚠️ N'OUBLIE PAS DE METTRE TON NOUVEAU LIEN DÉPLOYÉ ICI ⚠️
+const gasUrl = 'VOTRE_NOUVELLE_URL_SCRIPT_GOOGLE_PUBLIÉE_ICI';
 
 window.onload = function() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -159,9 +159,12 @@ const COL_MAP = {
 const PIECES = [
   { rep:'CP3', nbr:1, nom:'Toutes pièces 3mm', etapes:[{col:11,num:1}] },
   { rep:'CP15', nbr:1, nom:'Toutes pièces 1.5mm', etapes:[{col:16,num:1}] },
-  // EXEMPLE DE PLAN AJOUTÉ SUR LE FLAN 1 (Tu pourras remplacer l'URL par ton lien Google Drive /uc?id=...)
-  { rep:'1.1', nbr:2, nom:'Flan 1', image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
-  { rep:'1.2', nbr:2, nom:'Flan 2', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
+  
+  // EXEMPLES AVEC LA NOUVELLE MÉTHODE DE PLANS (PDF ou Image) :
+  { rep:'1.1', nbr:2, nom:'Flan 1', plan: '1.1.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
+  { rep:'1.2', nbr:2, nom:'Flan 2', plan: '1.2.jpg', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
+  
+  // LES AUTRES PIÈCES SANS PLAN (tu pourras ajouter plan: 'nom.ext' si tu en as besoin plus tard)
   { rep:'1.3', nbr:1, nom:'Cloison', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4}] },
   { rep:'1.4', nbr:6, nom:'Omega', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6}] },
   { rep:'2.1', nbr:1, nom:'Demie trémie droite', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
@@ -201,10 +204,14 @@ function chargerEtatLocal() {
   if (memoire) { etat = JSON.parse(memoire); }
 }
 
-// FONCTIONS PLAN MODAL
-function ouvrirPlan(urlImage) {
-  document.getElementById('image-plan-source').src = urlImage;
-  document.getElementById('modal-plan').style.display = 'flex';
+// FONCTIONS PLAN MODAL ET PDF INTELLIGENT
+function ouvrirPlan(cheminFichier) {
+  if (cheminFichier.toLowerCase().endsWith('.pdf')) {
+    window.open(cheminFichier, '_blank');
+  } else {
+    document.getElementById('image-plan-source').src = cheminFichier;
+    document.getElementById('modal-plan').style.display = 'flex';
+  }
 }
 
 function fermerPlan() {
@@ -333,7 +340,8 @@ function renderPieceCard(p) {
   const statut = getStatutPiece(p);
   const labels = { attente: 'En attente', encours: 'En cours ▶', termine: '✓ Terminé' };
   
-  const btnPlanHtml = p.image ? `<button class="btn-plan" onclick="ouvrirPlan('${p.image}'); event.stopPropagation();">🖼️ Plan</button>` : '';
+  // ICI : L'APPLICATION VA CHERCHER AUTOMATIQUEMENT DANS LE DOSSIER "plans/"
+  const btnPlanHtml = p.plan ? `<button class="btn-plan" onclick="ouvrirPlan('plans/${p.plan}'); event.stopPropagation();">🖼️ Plan</button>` : '';
 
   card.innerHTML = `
     <div class="piece-card-header" onclick="toggleEtapes('${p.rep}')">
@@ -355,7 +363,6 @@ function renderPieceCard(p) {
       const t = ms > 0 ? formatHeure(d.debut)+" - "+formatHeure(d.fin) : "Fini";
       htmlAction = `<div class="pointage-info done">✓ ${t}</div>`;
     } else if (d.enCours) {
-      // Affichage "En cours par..." si ce n'est pas moi qui ai démarré
       if (d.operateur === operateurActif) {
         htmlAction = `<div class="pointage-info" style="color:var(--jaune);margin-right:10px">▶ Démarré</div><button class="btn-arreter" onclick="stopperEtape('${p.rep}', ${e.col})">⏹ Terminer</button>`;
       } else {
