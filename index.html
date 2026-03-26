@@ -114,7 +114,9 @@
   <button class="profil-btn" onclick="choisirProfil('Paul BENOIT')">Paul BENOIT</button>
   <button class="profil-btn" onclick="choisirProfil('Enzo BODEI')">Enzo BODEI</button>
   <button class="profil-btn autre" onclick="choisirProfil('Autre opérateur')">Autre opérateur</button>
-</div>
+  <div id="qr-footer-container" style="text-align: center; margin-top: 3rem; padding: 2rem; border-top: 2px dashed #ccc;">
+      </div>
+  </div> </div> ```
 
 <div id="vue-fiche">
   <div class="fiche-header no-print">
@@ -246,6 +248,11 @@ function afficherFiche() {
   const url = window.location.href.split('?')[0] + '?vue=atelier'; 
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=${encodeURIComponent(url)}`;
   document.getElementById('qrcode-fiche').innerHTML = `<img src="${qrUrl}" style="background:white;padding:4px;border-radius:8px">`;
+  // On génère aussi le GROS QR code en bas de page (taille 200x200)
+  const qrUrlGros = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`;
+  document.getElementById('qr-footer-container').innerHTML = `
+    <h3 style="color: var(--bleu); margin-bottom: 1rem; font-size: 1.2rem;">📱 Scannez pour pointer en atelier</h3>
+    <img src="${qrUrlGros}" style="background:white; padding:10px; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">`;
 }
 
 function afficherProfils() {
