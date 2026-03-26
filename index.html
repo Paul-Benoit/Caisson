@@ -135,7 +135,7 @@
 <script>
 // --- CONFIGURATION GOOGLE SHEETS ---
 // ⚠️ N'OUBLIE PAS DE METTRE TON NOUVEAU LIEN DÉPLOYÉ ICI ⚠️
-const gasUrl = 'https://script.google.com/macros/s/AKfycbwnb9bI_e_xs5ot4WdHxzStsk3A7tZQxni0vNA0ktt8sH3INr9ovt-fNisEmfy33_4/exec';
+const gasUrl = 'https://script.google.com/macros/s/AKfycbyGO65HkJKQOPcBa0Q0aGvE2yFbOMzzX2ZpQg2bA4wDEpGKBGKjE9ywgSBU85LEHLQ/exec';
 
 window.onload = function() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -403,13 +403,32 @@ function stopperEtape(rep, col) {
   sauvegarderEtatLocal(); 
   
   const et = etat[rep].etapes[col];
-  const minutes = ((et.fin - et.debut) / 60000).toFixed(2);
-  const payload = { action: 'terminer', operateur: operateurActif, rep: rep, col: col, nomPiece: PIECES.find(p => p.rep === rep).nom, etape: COL_MAP[col].nom, temps: minutes + " min" };
+  
+  // NOUVEAU : Calcul du temps en Heures et Minutes
+  const totalMinutes = Math.floor((et.fin - et.debut) / 60000);
+  const heures = Math.floor(totalMinutes / 60);
+  const minutesRestantes = totalMinutes % 60;
+  
+  let texteTemps = "";
+  if (heures > 0) {
+    texteTemps = heures + "h " + minutesRestantes + "min";
+  } else {
+    texteTemps = minutesRestantes + " min";
+  }
+
+  const payload = { 
+    action: 'terminer', 
+    operateur: operateurActif, 
+    rep: rep, 
+    col: col, 
+    nomPiece: PIECES.find(p => p.rep === rep).nom, 
+    etape: COL_MAP[col].nom, 
+    temps: texteTemps // Envoie le temps joliment formaté !
+  };
 
   fetch(gasUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) }).catch(err => console.log(err));
   renderListePieces();
 }
-
 function retourSelection() { window.location.href = window.location.href.split('?')[0]; }
 </script>
 </body>
