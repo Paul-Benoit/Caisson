@@ -278,7 +278,7 @@
   <h2>Qui êtes-vous ?</h2>
   <button class="profil-btn" onclick="choisirProfil('Paul BENOIT')">Paul BENOIT</button>
   <button class="profil-btn" onclick="choisirProfil('Enzo BODEI')">Enzo BODEI</button>
-  <button class="profil-btn autre" onclick="choisirProfil('Autre Opérateur')">Autre</button>
+  <button class="profil-btn autre" onclick="choisirProfil('Autre opérateur')">Autre opérateur</button>
 </div>
 
 <div id="vue-fiche">
@@ -516,7 +516,10 @@ function renderListePieces() {
 
   const noms = { 'C': 'ÉTAPE GLOBALE : DÉCOUPES PLASMA', '1': 'Ensemble 1 — Flancs & Cloisons', '2': 'Ensemble 2 — Trémie', '3': 'Ensemble 3 — Structure' };
 
-  Object.keys(groupes).forEach(g => {
+  // NOUVEAU : On force l'ordre ici pour que le "C" reste toujours en haut !
+  const ordreGroupes = ['C', '1', '2', '3'];
+
+  ordreGroupes.forEach(g => {
     if (!groupes[g].length) return;
     const titre = document.createElement('div');
     titre.className = 'mob-section-titre';
