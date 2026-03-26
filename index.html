@@ -185,7 +185,6 @@
   table.fiche-table tbody td:last-child { border-right: none; }
   .etape-badge { background: var(--bleu); color: white; border-radius: 4px; padding: 2px 5px; font-size: 0.65rem; font-weight: 700; font-family: 'DM Mono', monospace; }
   .etape-vide { color: #ccc; text-align: center; }
-  .zone-temps { border: 1.5px dashed #bbb; border-radius: 4px; height: 22px; min-width: 60px; background: white; }
   .col-ref { font-family: 'DM Mono', monospace; font-weight: 700; color: var(--bleu); }
   .col-nbr { text-align: center; font-weight: 700; }
 
@@ -194,7 +193,6 @@
   #qrcode-fiche canvas, #qrcode-fiche img { border-radius: 8px; }
   .qr-info h3 { font-size: 1rem; font-weight: 800; color: var(--bleu); margin-bottom: 0.3rem; }
   .qr-info p { font-size: 0.8rem; color: #555; line-height: 1.5; }
-  .qr-info code { font-family: 'DM Mono', monospace; font-size: 0.75rem; background: var(--bleu); color: white; padding: 2px 8px; border-radius: 4px; }
 
   /* ===== VUE MOBILE ===== */
   #vue-mobile { display: none; background: var(--bleu); min-height: 100vh; }
@@ -382,8 +380,8 @@ const COL_MAP = {
 };
 
 const PIECES = [
-  { rep:'CP3', nbr:1, nom:'Ensemble des pièces (Ép. 3mm)', etapes:[{col:11,num:1}] },
-  { rep:'CP15', nbr:1, nom:'Ensemble des pièces (Ép. 1.5mm)', etapes:[{col:16,num:1}] },
+  { rep:'CP3', nbr:1, nom:'Toutes pièces 3mm (+ Ébav & Ctl)', etapes:[{col:11,num:1}] },
+  { rep:'CP15', nbr:1, nom:'Toutes pièces 1.5mm (+ Ébav & Ctl)', etapes:[{col:16,num:1}] },
   { rep:'1.1', nbr:2, nom:'Flan 1', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
   { rep:'1.2', nbr:2, nom:'Flan 2', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
   { rep:'1.3', nbr:1, nom:'Cloison', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4}] },
@@ -471,12 +469,11 @@ function genererQR() {
 }
 
 // ===== VUE MOBILE & LOGIQUE =====
-// Cette fonction filtre le traçage, et fusionne Plasma+Ebavurage+Controle
+// Cette fonction cache le traçage, ET masque l'ébavurage/contrôle pour tout le monde
 function getEtapesMobile(p) {
-  const hasPlasma = p.etapes.some(x => x.col === 11 || x.col === 16);
   return p.etapes.filter(e => {
     if (e.col <= 7) return false; // Cache Traçage
-    if (hasPlasma && (e.col === 17 || e.col === 18)) return false; // Cache Ebav/Ctl si Plasma
+    if (e.col === 17 || e.col === 18) return false; // Cache Ébavurage et Contrôle débit
     return true;
   });
 }
@@ -550,13 +547,9 @@ function renderPieceCard(p) {
 
   const containerEtapes = card.querySelector('.piece-etapes');
   const etapesMobile = getEtapesMobile(p);
-  const hasPlasma = p.etapes.some(x => x.col === 11 || x.col === 16);
   
   etapesMobile.forEach((e, index) => {
     let nomEtape = COL_MAP[e.col].nom;
-    if ((e.col === 11 || e.col === 16) && hasPlasma && p.rep !== 'CP3' && p.rep !== 'CP15') {
-      nomEtape += " (+ Ébavurage & Ctl)";
-    }
     
     const d = etat[p.rep].etapes[e.col];
     let htmlAction = '';
