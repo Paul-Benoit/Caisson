@@ -160,30 +160,35 @@ const PIECES = [
   { rep:'CP3', nbr:1, nom:'Toutes pièces 3mm', etapes:[{col:11,num:1}] },
   { rep:'CP15', nbr:1, nom:'Toutes pièces 1.5mm', etapes:[{col:16,num:1}] },
   
-  // EXEMPLES AVEC LA NOUVELLE MÉTHODE DE PLANS (PDF ou Image) :
-  { rep:'1.1', nbr:2, nom:'Flan 1', plan: '1.1.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
-  { rep:'1.2', nbr:2, nom:'Flan 2', plan: '1.2.jpg', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
+  // PLANS ENSEMBLE 1
+  { rep:'1.1', nbr:2, nom:'Flan 1', plan: '1.1 plan de définition Flan 1.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
+  { rep:'1.2', nbr:2, nom:'Flan 2', plan: '1.2 plan de définition Flan 2.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
+  { rep:'1.3', nbr:1, nom:'Cloison', plan: '1.3 plan de définition Cloison.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4}] },
+  { rep:'1.4', nbr:6, nom:'Omega', plan: '1.4 plan de définition Omega.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6}] },
+  { rep:'1.5', nbr:1, nom:'Rail cloison', plan: '1.5 plan de définition Rail cloison.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4}] },
   
-  // LES AUTRES PIÈCES SANS PLAN (tu pourras ajouter plan: 'nom.ext' si tu en as besoin plus tard)
-  { rep:'1.3', nbr:1, nom:'Cloison', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4}] },
-  { rep:'1.4', nbr:6, nom:'Omega', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6}] },
-  { rep:'2.1', nbr:1, nom:'Demie trémie droite', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
-  { rep:'2.2', nbr:1, nom:'Demie trémie gauche', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
-  { rep:'2.3', nbr:1, nom:'Bec orientable', etapes:[{col:5,num:1},{col:6,num:2},{col:7,num:3},{col:17,num:4},{col:18,num:5},{col:20,num:6},{col:27,num:7},{col:34,num:8}] },
-  { rep:'2.4', nbr:1, nom:'Tube bec orientable', etapes:[{col:5,num:1},{col:6,num:2},{col:7,num:3},{col:17,num:4},{col:18,num:5},{col:20,num:6},{col:27,num:7},{col:34,num:8}] },
-  { rep:'2.5', nbr:1, nom:'Tube sortie', etapes:[{col:4,num:1},{col:7,num:2},{col:10,num:3},{col:17,num:4},{col:18,num:5}] },
-  { rep:'2.7', nbr:1, nom:'Trappe', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6}] },
-  { rep:'2.8', nbr:1, nom:'Rail trappe', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
-  { rep:'2.9', nbr:1, nom:'Butée trappe', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7}] },
-  { rep:'3.1', nbr:4, nom:'Montant', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6}] },
-  { rep:'3.2', nbr:2, nom:'Partie basse 1', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6}] },
-  { rep:'3.3', nbr:2, nom:'Partie basse 2', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6}] },
-  { rep:'3.4', nbr:2, nom:'Traverse', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6}] },
-  { rep:'3.5', nbr:4, nom:'Platine', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4}] },
-  { rep:'3.6', nbr:2, nom:'Renfort montant', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
-  { rep:'3.7', nbr:2, nom:'Crochet chaîne', etapes:[{col:4,num:1},{col:7,num:2},{col:10,num:3},{col:17,num:4},{col:18,num:5}] },
-  { rep:'3.8', nbr:2, nom:'Gousset Montant', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4}] },
-  { rep:'3.9', nbr:2, nom:'Gousset Renfort', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4}] }
+  // PLANS ENSEMBLE 2
+  { rep:'2.1', nbr:1, nom:'Demie trémie droite', plan: '2.1 plan de définition Demi trémie droite.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
+  { rep:'2.2', nbr:1, nom:'Demie trémie gauche', plan: '2.2 plan de définition Demi trémie gauche.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
+  { rep:'2.3', nbr:1, nom:'Bec orientable', plan: '2.3 plan de définition Bec orientable.pdf', etapes:[{col:5,num:1},{col:6,num:2},{col:7,num:3},{col:17,num:4},{col:18,num:5},{col:20,num:6},{col:27,num:7},{col:34,num:8}] },
+  { rep:'2.4', nbr:1, nom:'Tube bec orientable', plan: '2.4 plan de définition Tube bec orientable.pdf', etapes:[{col:5,num:1},{col:6,num:2},{col:7,num:3},{col:17,num:4},{col:18,num:5},{col:20,num:6},{col:27,num:7},{col:34,num:8}] },
+  { rep:'2.5', nbr:1, nom:'Tube sortie', plan: '2.5 plan de définition Tube sortie de trémie.pdf', etapes:[{col:4,num:1},{col:7,num:2},{col:10,num:3},{col:17,num:4},{col:18,num:5}] },
+  { rep:'2.6', nbr:1, nom:'Rail cloison 2', plan: '2.6 plan de définition Rail cloison 2.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4}] },
+  { rep:'2.7', nbr:1, nom:'Trappe', plan: '2.7 plan de définition Trappe guillotine.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6}] },
+  { rep:'2.8', nbr:1, nom:'Rail trappe', plan: '2.8 plan de définition Rail Trappe Guillotine.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
+  { rep:'2.9', nbr:1, nom:'Butée trappe', plan: '2.9 plan de définition Butée trappe.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7}] },
+
+  // PLANS ENSEMBLE 3
+  { rep:'3.1', nbr:4, nom:'Montant', plan: '3.1 plan de définition Montant.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6}] },
+  { rep:'3.2', nbr:2, nom:'Partie basse 1', plan: '3.2 plan de définition Partie basse 1.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6}] },
+  { rep:'3.3', nbr:2, nom:'Partie basse 2', plan: '3.3 plan de définition Partie basse 2.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6}] },
+  { rep:'3.4', nbr:2, nom:'Traverse', plan: '3.4 plan de définition Traverse.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6}] },
+  { rep:'3.5', nbr:4, nom:'Platine', plan: '3.5 plan de définition Platine.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4}] },
+  { rep:'3.6.1', nbr:1, nom:'Renfort montant droit', plan: '3.6.1 Renfort Montant Droit.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
+  { rep:'3.6.2', nbr:1, nom:'Renfort montant gauche', plan: '3.6.2 Renfort Montant Gauche.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4},{col:23,num:5},{col:26,num:6},{col:32,num:7},{col:34,num:8}] },
+  { rep:'3.7', nbr:2, nom:'Crochet chaîne', plan: '3.7 plan de définition Crochet Chaîne.pdf', etapes:[{col:4,num:1},{col:7,num:2},{col:10,num:3},{col:17,num:4},{col:18,num:5}] },
+  { rep:'3.8', nbr:2, nom:'Gousset Montant', plan: '3.8 plan de définition Gousset Montant.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4}] },
+  { rep:'3.9', nbr:2, nom:'Gousset Renfort', plan: '3.9 plan de définition Gousset Renfort Montant.pdf', etapes:[{col:5,num:1},{col:7,num:2},{col:17,num:3},{col:18,num:4}] }
 ];
 
 const COLS_FICHE = [4,5,6,7,8,9,10,11,16,13,14,15,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34];
@@ -223,7 +228,10 @@ function fermerPlan() {
 function chargerHistorique() {
   document.getElementById('nom-operateur-display').textContent = operateurActif + " (Synchro...)";
   
-  fetch(gasUrl)
+  // L'ASTUCE ANTI-CACHE : On ajoute "?t=..." pour obliger le téléphone à lire le Google Sheets en direct
+  const urlAntiCache = gasUrl + "?t=" + new Date().getTime();
+  
+  fetch(urlAntiCache)
     .then(r => r.json())
     .then(data => {
       data.forEach(item => {
@@ -231,13 +239,25 @@ function chargerHistorique() {
           if (item.action === 'demarrer') {
             etat[item.rep].etapes[item.col].enCours = true;
             etat[item.rep].etapes[item.col].operateur = item.operateur;
-            etat[item.rep].etapes[item.col].fin = null;
+            // On s'assure de ne pas écraser une tâche qui serait déjà terminée localement
+            if (!etat[item.rep].etapes[item.col].fin) {
+               etat[item.rep].etapes[item.col].fin = null;
+            }
           } else if (item.action === 'terminer') {
             etat[item.rep].etapes[item.col].enCours = false;
-            etat[item.rep].etapes[item.col].fin = 1;
+            etat[item.rep].etapes[item.col].fin = 1; // 1 signifie "terminé via le serveur"
           }
         }
       });
+      sauvegarderEtatLocal();
+      document.getElementById('nom-operateur-display').textContent = operateurActif;
+      renderListePieces();
+    })
+    .catch(err => {
+      console.log('Erreur synchro:', err);
+      document.getElementById('nom-operateur-display').textContent = operateurActif + " (Hors-ligne)";
+    });
+}
       sauvegarderEtatLocal();
       document.getElementById('nom-operateur-display').textContent = operateurActif;
       renderListePieces();
@@ -400,7 +420,30 @@ function demarrerEtape(rep, col) {
 function stopperEtape(rep, col) {
   etat[rep].etapes[col].enCours = false;
   etat[rep].etapes[col].fin = Date.now();
+  
+  const et = etat[rep].etapes[col];
+  
+  // SÉCURITÉ : Si l'heure de début a été perdue (suite à un rechargement par ex), on met 1 minute par défaut pour éviter de faire planter le script
+  if (!et.debut) { et.debut = Date.now() - 60000; }
+  
+  const totalMinutes = Math.floor((et.fin - et.debut) / 60000);
+  const heures = Math.floor(totalMinutes / 60);
+  const minutesRestantes = totalMinutes % 60;
+  
+  let texteTemps = "";
+  if (heures > 0) {
+    texteTemps = heures + "h " + minutesRestantes + "min";
+  } else {
+    texteTemps = minutesRestantes + " min";
+  }
+  
   sauvegarderEtatLocal(); 
+
+  const payload = { action: 'terminer', operateur: operateurActif, rep: rep, col: col, nomPiece: PIECES.find(p => p.rep === rep).nom, etape: COL_MAP[col].nom, temps: texteTemps };
+
+  fetch(gasUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) }).catch(err => console.log(err));
+  renderListePieces();
+}
   
   const et = etat[rep].etapes[col];
   
